@@ -4,7 +4,8 @@ import React from 'react'
 import './App.css'
 import Cardlist from './components/CardList/CardList'
 import Pagination from './components/Pagination/Pagination'
-import Navbar from './components/Navbar/Navbar'
+//import Navbar from './components/Navbar/Navbar'
+import Toolbar from './components/Navigation/Toolbar/Toolbar'
 
 const words = [
   [ 'русский', 'английский', 'кто-то', 'someone' ],
@@ -22,8 +23,8 @@ class App extends React.Component {
 
   state = {
     words: [], 
-    currentPage: 1,
-    wordsPerPage: 24
+   // currentPage: 1,
+   // wordsPerPage: 24
     
 }
 
@@ -33,7 +34,7 @@ handleForce = data => {
   this.setState({words: data})
 };
 
-paginate = pageNumber => this.setState({currentPage: pageNumber})
+//paginate = pageNumber => this.setState({currentPage: pageNumber})
 
 
 
@@ -45,16 +46,10 @@ render() {
 
   return (
     <div className="App">
-        <Navbar  onFileLoaded={this.handleForce}/>
-        <div className="container">
-        {/* <CSVReader
-          cssClass="react-csv-input"
-          label="Select CSV"
-          onFileLoaded={this.handleForce}
-        /> */}
-      </div>
+      <Toolbar />
+        {/* <Navbar  onFileLoaded={this.handleForce}/> */}
       <Cardlist words={currentWords}/>
-      <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={this.paginate}/>
+      {/* <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={this.paginate}/> */}
       
     
   </div>
