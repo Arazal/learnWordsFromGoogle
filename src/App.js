@@ -1,11 +1,11 @@
 import React from 'react'
 
 
-import './App.css'
+import classes from './App.css'
 import Cardlist from './components/CardList/CardList'
-import Pagination from './components/Pagination/Pagination'
-//import Navbar from './components/Navbar/Navbar'
 import Toolbar from './components/Navigation/Toolbar/Toolbar'
+import SideDrawer from './components/Navigation/SideDrawer/SideDrawer'
+
 
 const words = [
   [ 'русский', 'английский', 'кто-то', 'someone' ],
@@ -16,16 +16,20 @@ const words = [
   [ 'английский', 'русский', 'unleashing', 'развязывание' ],
   [ 'английский', 'русский', 'canvas', 'холст' ],
   [ 'английский', 'русский', 'slice', 'ломтик' ],
-  [ 'английский', 'русский', 'tenant.', 'арендатор.' ]
+  [ 'английский', 'русский', 'tenant.', 'арендатор.' ],
+  [ 'русский', 'английский', 'кто-то', 'someone' ],
+  [ 'английский', 'русский', 'collide', 'сталкиваться' ],
+  [ 'английский', 'русский', 'convince', 'убеждать' ],
+  [ 'английский', 'русский', 'propagate', 'размножать' ],
+  [ 'английский', 'русский', 'sophisticated', 'утонченный' ],
+  [ 'английский', 'русский', 'unleashing', 'развязывание' ],
 ]
 
 class App extends React.Component {
 
   state = {
-    words: [], 
-   // currentPage: 1,
-   // wordsPerPage: 24
-    
+    words: words, 
+    showSideDrawer: false
 }
 
 
@@ -34,24 +38,28 @@ handleForce = data => {
   this.setState({words: data})
 };
 
-//paginate = pageNumber => this.setState({currentPage: pageNumber})
+sideDrawerClosedHandler = () => {
+  this.setState({showSideDrawer: false})
+}
+
+sideDrawerToggleHandler = () => {
+  this.setState((prevState) => {
+    return { showSideDrawer: !prevState.showSideDrawer}
+  })
+}
 
 
 
 render() {
-  const { currentPage, wordsPerPage, words } = this.state;
-  const indexOfLastPost = currentPage * wordsPerPage;
-  const indexOfFirstPost = indexOfLastPost - wordsPerPage;
-  const currentWords = words.slice(indexOfFirstPost, indexOfLastPost)
-
   return (
-    <div className="App">
-      <Toolbar />
-        {/* <Navbar  onFileLoaded={this.handleForce}/> */}
-      <Cardlist words={currentWords}/>
-      {/* <Pagination wordsPerPage={wordsPerPage} totalWords={words.length} paginate={this.paginate}/> */}
-      
-    
+    <div className={classes.App}>
+      <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
+      <SideDrawer 
+        open={this.state.showSideDrawer}
+        closed={this.sideDrawerClosedHandler}
+       
+      />
+      <Cardlist words={this.state.words} className={classes.Content}/>
   </div>
   )
 }

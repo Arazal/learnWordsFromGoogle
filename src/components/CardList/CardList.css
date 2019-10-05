@@ -3,8 +3,18 @@
     width: 100vw;
     height: 100vh;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+
+    grid-auto-rows: 70px;
+    margin-top: 72px;
   }
+
+  @media (max-width: 500px) {
+    .list{
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(auto, 1fr);
+    }
+}
   

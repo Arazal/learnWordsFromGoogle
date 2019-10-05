@@ -2,12 +2,12 @@ import React from 'react'
 
 import Card  from '../Card/Card'
 
-import './CardList.css'
+import classes from './CardList.css'
 
 const CardList = ({ words }) => {
-    console.log(words)
+
     return (
-        <div className='list'>
+        <div className={classes.list}>
             {words.map((word, idx) => (
                 <Card key={idx} word={word} />
             ))}
